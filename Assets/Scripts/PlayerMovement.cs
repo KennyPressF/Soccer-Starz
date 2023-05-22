@@ -1,20 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
     Vector3 moveDirection;
     Vector2 moveInput;
-    float moveDirX;
-    float moveDirZ;
     Rigidbody rb;
 
     GameObject ball;
     [SerializeField] GameObject ballPoint;
-
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
