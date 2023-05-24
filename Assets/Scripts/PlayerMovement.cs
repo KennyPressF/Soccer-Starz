@@ -7,14 +7,12 @@ using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] float moveSpeed;
     Vector3 moveDirection;
     Vector2 moveInput;
     Rigidbody rb;
 
-    GameObject ball;
-    [SerializeField] GameObject ballPoint;
-    
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -30,15 +28,5 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = moveDirection.normalized * moveSpeed * Time.deltaTime;
-    }
-
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.CompareTag("Ball"))
-        {
-            ball = collision.gameObject;
-            ball.transform.SetParent(ballPoint.transform);
-            ball.transform.localPosition = Vector3.zero;
-        }
     }
 }

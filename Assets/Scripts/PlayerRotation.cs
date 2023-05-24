@@ -5,20 +5,19 @@ using UnityEngine.EventSystems;
 
 public class PlayerRotation : MonoBehaviour
 {
+    Vector3 rotateDirection;
     [SerializeField] float rotateSpeed;
 
     void Update()
     {
-        //transform.LookAt(ballPos);
+        float horizontalInput = Input.GetAxisRaw("Vertical");
+        float verticalInput = Input.GetAxisRaw("Horizontal");
 
-        float horizontalInput = Input.GetAxis("Vertical");
-        float verticalInput = Input.GetAxis("Horizontal");
+        rotateDirection = new Vector3(verticalInput, 0, horizontalInput);
 
-        Vector3 moveDirection = new Vector3(verticalInput, 0, horizontalInput);
-
-        if (moveDirection.sqrMagnitude > 0.001f)
+        if (rotateDirection.sqrMagnitude > 0.001f)
         {
-            var desiredRotation = Quaternion.LookRotation(moveDirection);
+            var desiredRotation = Quaternion.LookRotation(rotateDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, rotateSpeed * Time.deltaTime);
         }
     }
