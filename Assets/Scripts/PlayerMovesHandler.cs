@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerMovesHandler : MonoBehaviour
 {
     Vector3 shotDirection;
-    [SerializeField] float shotSpeed;
+    [SerializeField] float shotPower;
+    [SerializeField] float shotAngle;
 
     BallController ballCtrl;
     Player player;
@@ -24,7 +25,13 @@ public class PlayerMovesHandler : MonoBehaviour
 
         else if (player.inPossession)
         {
-            ballCtrl.Shoot(shotDirection, shotSpeed);
+            //ballCtrl.Shoot(shotDirection, shotSpeed);
+            ballCtrl.ProcessShoot(shotDirection, shotPower);
+        }
+
+        else
+        {
+            //tackle
         }
     }
 
@@ -33,6 +40,6 @@ public class PlayerMovesHandler : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Vertical");
         float verticalInput = Input.GetAxisRaw("Horizontal");
 
-        shotDirection = new Vector3(verticalInput, 0, horizontalInput);
+        shotDirection = new Vector3(verticalInput, shotAngle, horizontalInput);
     }
 }

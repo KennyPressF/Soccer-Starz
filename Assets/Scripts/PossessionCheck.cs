@@ -15,7 +15,6 @@ public class PossessionCheck : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ball"))
         {
-        Debug.Log("qert");
             player.SetPossession(true);
         }
     }
