@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24ba66d725b54941bc1c64d311ac242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  side: 0
 --- !u!33 &399396190
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -666,6 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24ba66d725b54941bc1c64d311ac242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  side: 1
 --- !u!33 &2040048406
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1203,7 +1205,7 @@ Transform:
   m_GameObject: {fileID: 7554463379703009270}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 424508333011728725}

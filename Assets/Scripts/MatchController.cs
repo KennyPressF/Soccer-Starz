@@ -4,15 +4,52 @@ using UnityEngine;
 
 public class MatchController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    bool inPlay;
+
+    [SerializeField] GameObject redPlayer;
+    [SerializeField] int redGoals;
+    [SerializeField] GameObject bluePlayer;
+    [SerializeField] int blueGoals;
+
+    Scoreboard scoreboard;
+    Timer timer;
+
+    private void Awake()
     {
-        
+        scoreboard = FindObjectOfType<Scoreboard>();
+        timer = FindObjectOfType<Timer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        inPlay = true;
+    }
+
+    public void ProcessGoalScored(string teamWhoScored)
+    {
+        if(inPlay)
+        {
+            if (teamWhoScored == "redTeam")
+            {
+                redGoals++;
+                scoreboard.SetRedGoalsUI(redGoals.ToString());
+            }
+
+            if (teamWhoScored == "blueTeam")
+            {
+                blueGoals++;
+                scoreboard.SetBlueGoalsUI(blueGoals.ToString());
+            }
+
+            timer.PauseTimer();
+            inPlay = false;
+            MovePlayersToStartingPos();
+        }
+    }
+
+    public void MovePlayersToStartingPos()
+    {
+        //redPlayer.GetComponent<Player>().MoveToStartingPos();
+        bluePlayer.GetComponent<Player>().MoveToStartingPos();
     }
 }

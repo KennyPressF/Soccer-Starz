@@ -7,10 +7,17 @@ public class Player : MonoBehaviour
     public enum Teams { Team1, Team2};
     public Teams team;
 
+    [SerializeField] Vector3 startingPosition;
+
     public bool inPossession;
 
     public void SetPossession(bool boolReturn)
     {
         inPossession = boolReturn;
+    }
+
+    public void MoveToStartingPos()
+    {
+        transform.position = startingPosition;
     }
 }
