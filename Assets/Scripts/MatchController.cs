@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using static Player;
 
 public class MatchController : MonoBehaviour
 {
@@ -16,6 +16,7 @@ public class MatchController : MonoBehaviour
 
     [SerializeField] GameObject goalAnim;
     [SerializeField] GameObject countdownAnim;
+    [SerializeField] GameObject winnerText;
 
     BallController ballController;
     Scoreboard scoreboard;
@@ -45,6 +46,7 @@ public class MatchController : MonoBehaviour
         timer.PauseTimer();
         goalAnim.SetActive(false);
         countdownAnim.SetActive(false);
+        winnerText.SetActive(false);
         StartCoroutine(ProcessCountdownToPlay());
     }
 
@@ -94,24 +96,30 @@ public class MatchController : MonoBehaviour
         timer.PauseTimer();
         inPlay = false;
 
-        switch(winningTeam)
+        winnerText.SetActive(true);
+        var winnerTxt = winnerText.GetComponentInChildren<TextMeshProUGUI>();
+
+        switch (winningTeam)
         {
             case "redTeam":
                 Debug.Log("Red Team Wins!");
+                winnerTxt.text = "Red Team Wins!";
                 break;
 
             case "blueTeam":
                 Debug.Log("Blue Team Wins!");
+                winnerTxt.text = "Blue Team Wins!";
                 break;
 
             case "tie":
                 Debug.Log("Tie Game!");
+                winnerTxt.text = "Tie!";
                 break;
 
             default:
                 Debug.Log("Error in End Game method of MatchController.cs");
                 break;
-        }
+        }  
     }
 
     IEnumerator ProcessGoalTransition()
