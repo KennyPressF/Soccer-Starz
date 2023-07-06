@@ -22,13 +22,18 @@ public class PlayerMovement : MonoBehaviour
     Player player;
     PlayerAnimationHandler animationHandler;
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         animationHandler = GetComponent<PlayerAnimationHandler>();
         player = GetComponent<Player>();
         animationHandler = GetComponent<PlayerAnimationHandler>();
         ballCtrl = FindObjectOfType<BallController>();
+    }
+
+    private void Start()
+    {
+        player.MoveToStartingPos();
     }
 
     private void FixedUpdate()

@@ -8,9 +8,9 @@ public class MatchController : MonoBehaviour
     public bool inPlay;
 
     [SerializeField] GameObject redPlayer;
-    [SerializeField] int redGoals;
+    public int redGoals;
     [SerializeField] GameObject bluePlayer;
-    [SerializeField] int blueGoals;
+    public int blueGoals;
 
     [SerializeField] int maxGoals;
 
@@ -56,14 +56,14 @@ public class MatchController : MonoBehaviour
             {
                 redGoals++;
                 scoreboard.SetRedGoalsUI(redGoals.ToString());
-                CheckForGameEnd("Red Team", redGoals);
+                CheckForGameEnd("redTeam", redGoals);
             }
 
             if (teamWhoScored == "blueTeam")
             {
                 blueGoals++;
                 scoreboard.SetBlueGoalsUI(blueGoals.ToString());
-                CheckForGameEnd("Blue Team", blueGoals);
+                CheckForGameEnd("blueTeam", blueGoals);
             }
 
             timer.PauseTimer();
@@ -91,7 +91,27 @@ public class MatchController : MonoBehaviour
 
     public void EndGame(string winningTeam)
     {
-        Debug.Log(winningTeam + " Wins!");
+        timer.PauseTimer();
+        inPlay = false;
+
+        switch(winningTeam)
+        {
+            case "redTeam":
+                Debug.Log("Red Team Wins!");
+                break;
+
+            case "blueTeam":
+                Debug.Log("Blue Team Wins!");
+                break;
+
+            case "tie":
+                Debug.Log("Tie Game!");
+                break;
+
+            default:
+                Debug.Log("Error in End Game method of MatchController.cs");
+                break;
+        }
     }
 
     IEnumerator ProcessGoalTransition()

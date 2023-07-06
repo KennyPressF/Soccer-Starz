@@ -30,6 +30,26 @@ public class Timer : MonoBehaviour
             elapsedTime += Time.deltaTime * timerSpeed; ;
             UpdateTimerDisplay();
         }
+
+        if(elapsedTime > 180f)
+        {
+            var matchCtrl = MatchController.instance;
+
+            if (matchCtrl.redGoals > matchCtrl.blueGoals)
+            {
+                matchCtrl.EndGame("redTeam");
+            }
+
+            else if (matchCtrl.blueGoals > matchCtrl.redGoals)
+            {
+                matchCtrl.EndGame("blueTeam");
+            }
+
+            else if (matchCtrl.blueGoals == matchCtrl.redGoals)
+            {
+                matchCtrl.EndGame("tie");
+            }
+        }
     }
 
     public void PauseTimer()

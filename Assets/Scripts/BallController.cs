@@ -22,6 +22,8 @@ public class BallController : MonoBehaviour
     public void ResetBallPos()
     {
         rb.velocity = Vector3.zero;
+        rb.isKinematic = true;
         transform.position = ballStartPos;
+        rb.isKinematic = false;
     }
 }
