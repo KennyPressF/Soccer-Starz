@@ -19,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float shotAngle;
     BallController ballCtrl;
 
-
     Player player;
     PlayerAnimationHandler animationHandler;
 
@@ -32,42 +31,45 @@ public class PlayerMovement : MonoBehaviour
         ballCtrl = FindObjectOfType<BallController>();
     }
 
-    //void OnMove(InputValue input)
-    //{
-    //    moveInput = input.Get<Vector2>();
-    //    moveDirection.x = moveInput.x;
-    //    moveDirection.z = moveInput.y;
-    //}
-
     private void FixedUpdate()
     {
-        rb.velocity = moveDirection.normalized * moveSpeed * Time.deltaTime;
+        if (MatchController.instance.inPlay != true)
+        {
+            rb.velocity = Vector3.zero;
+        }
+        else
+        {
+            rb.velocity = moveDirection.normalized * moveSpeed * Time.deltaTime;
+        }
     }
 
     private void Update()
     {
-        moveDirection.z = Input.GetAxisRaw("Vertical");
-        moveDirection.x = Input.GetAxisRaw("Horizontal");
+        if (MatchController.instance.inPlay != true)
+        {
+            animationHandler.SetRunningAnimation(false);
+        }
+        else
+        {
+            moveDirection.z = Input.GetAxisRaw("Vertical");
+            moveDirection.x = Input.GetAxisRaw("Horizontal");
 
-        shotDirection = new Vector3(moveDirection.x, shotAngle, moveDirection.z);
+            shotDirection = new Vector3(moveDirection.x, shotAngle, moveDirection.z);
 
-        HandleRunningAnim();
+            HandleRunningAnim();
+        }
     }
 
     public void OnShoot(InputValue action)
     {
+        if(MatchController.instance.inPlay != true) { return; }
+
         if (!player.inPossession) { return; }
-        Debug.Log("Shoot");
-        
+
         if (player.inPossession)
         {
             ballCtrl.ProcessShoot(shotDirection, shotPower);
             animationHandler.TriggerKick();
-        }
-
-        else
-        {
-            //tackle
         }
     }
 

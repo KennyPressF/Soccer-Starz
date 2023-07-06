@@ -10,6 +10,8 @@ public class PlayerRotation : MonoBehaviour
 
     void Update()
     {
+        if (MatchController.instance.inPlay != true) { return; }
+
         float horizontalInput = Input.GetAxisRaw("Vertical");
         float verticalInput = Input.GetAxisRaw("Horizontal");
 

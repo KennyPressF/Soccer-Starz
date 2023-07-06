@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         elapsedTime = 0f;
-        isPaused = false;
+        //isPaused = false;
 
         UpdateTimerDisplay();
     }

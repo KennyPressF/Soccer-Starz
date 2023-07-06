@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public Teams team;
 
     [SerializeField] Vector3 startingPosition;
+    [SerializeField] Vector3 startingRotation;
 
     public bool inPossession;
 
@@ -19,5 +20,6 @@ public class Player : MonoBehaviour
     public void MoveToStartingPos()
     {
         transform.position = startingPosition;
+        transform.rotation = Quaternion.Euler(startingRotation);
     }
 }
