@@ -26,15 +26,15 @@ public class MatchController : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(instance);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //    DontDestroyOnLoad(instance);
+        //}
+        //else
+        //{
+        //    Destroy(this.gameObject);
+        //}
 
         ballController = FindObjectOfType<BallController>();
         scoreboard = FindObjectOfType<Scoreboard>();
@@ -75,7 +75,7 @@ public class MatchController : MonoBehaviour
 
     public void MovePlayersToStartingPos()
     {
-        //redPlayer.GetComponent<Player>().MoveToStartingPos();
+        redPlayer.GetComponent<Player>().MoveToStartingPos();
         bluePlayer.GetComponent<Player>().MoveToStartingPos();
     }
 
@@ -128,7 +128,7 @@ public class MatchController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         ballController.ResetBallPos();
         MovePlayersToStartingPos();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         goalAnim.SetActive(false);
         StartCoroutine(ProcessCountdownToPlay());
     }

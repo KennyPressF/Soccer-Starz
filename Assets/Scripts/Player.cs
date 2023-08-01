@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public enum Teams { Team1, Team2};
+    public enum Teams { RedTeam, BlueTeam};
     public Teams team;
 
     [SerializeField] Vector3 startingPosition;

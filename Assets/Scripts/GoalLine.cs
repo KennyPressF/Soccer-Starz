@@ -18,12 +18,12 @@ public class GoalLine : MonoBehaviour
     {
         if (collision.CompareTag("Ball"))
         {
-            if(side == GoalSide.Left)
+            if(side == GoalSide.Right)
             {
                 matchController.ProcessGoalScored("redTeam");
             }
 
-            if (side == GoalSide.Right)
+            if (side == GoalSide.Left)
             {
                 matchController.ProcessGoalScored("blueTeam");
             }

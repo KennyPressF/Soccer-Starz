@@ -8,9 +8,16 @@ public class PlayerRotation : MonoBehaviour
     Vector3 rotateDirection;
     [SerializeField] float rotateSpeed;
 
+    MatchController matchController;
+
+    private void Awake()
+    {
+        matchController = FindObjectOfType<MatchController>();
+    }
+
     void Update()
     {
-        if (MatchController.instance.inPlay != true) { return; }
+        if (matchController.inPlay != true) { return; }
 
         float horizontalInput = Input.GetAxisRaw("Vertical");
         float verticalInput = Input.GetAxisRaw("Horizontal");
