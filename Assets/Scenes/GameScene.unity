@@ -1007,7 +1007,7 @@ MonoBehaviour:
   redGoals: 0
   bluePlayer: {fileID: 2999166002524383832}
   blueGoals: 0
-  maxGoals: 2
+  maxGoals: 5
   goalAnim: {fileID: 1321258989}
   countdownAnim: {fileID: 831255450}
 --- !u!114 &821651339
