@@ -16,7 +16,6 @@ public class MatchController : MonoBehaviour
     
     [SerializeField] GameObject goalAnim;
     [SerializeField] GameObject countdownAnim;
-    [SerializeField] GameObject winnerText;
 
     BallController ballController;
     Scoreboard scoreboard;
@@ -34,7 +33,6 @@ public class MatchController : MonoBehaviour
         timer.PauseTimer();
         goalAnim.SetActive(false);
         countdownAnim.SetActive(false);
-        winnerText.SetActive(false);
         StartCoroutine(ProcessCountdownToPlay());
     }
 
@@ -84,30 +82,29 @@ public class MatchController : MonoBehaviour
         timer.PauseTimer();
         inPlay = false;
 
-        winnerText.SetActive(true);
-        var winnerTxt = winnerText.GetComponentInChildren<TextMeshProUGUI>();
-
         switch (winningTeam)
         {
             case "redTeam":
                 Debug.Log("Red Team Wins!");
-                winnerTxt.text = "Red Team Wins!";
+                PlayerPrefs.SetInt("gameResult", 0);
                 break;
 
             case "blueTeam":
                 Debug.Log("Blue Team Wins!");
-                winnerTxt.text = "Blue Team Wins!";
+                PlayerPrefs.SetInt("gameResult", 1);
                 break;
 
             case "tie":
                 Debug.Log("Tie Game!");
-                winnerTxt.text = "Tie!";
+                PlayerPrefs.SetInt("gameResult", 2);
                 break;
 
             default:
                 Debug.Log("Error in End Game method of MatchController.cs");
                 break;
-        }  
+        }
+
+        SceneManagement.instance.LoadScene(2);
     }
 
     IEnumerator ProcessGoalTransition()
@@ -123,7 +120,7 @@ public class MatchController : MonoBehaviour
 
     IEnumerator ProcessCountdownToPlay()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         countdownAnim.SetActive(true);
         yield return new WaitForSeconds(3f);
         countdownAnim.SetActive(false);
