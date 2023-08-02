@@ -9,9 +9,11 @@ public class Timer : MonoBehaviour
     private bool isPaused;
 
     Scoreboard scoreboard;
+    MatchController matchController;
 
     private void Awake()
     {
+        matchController = FindObjectOfType<MatchController>();
         scoreboard = FindObjectOfType<Scoreboard>();
     }
 
@@ -33,21 +35,19 @@ public class Timer : MonoBehaviour
 
         if(elapsedTime > 180f)
         {
-            var matchCtrl = MatchController.instance;
-
-            if (matchCtrl.redGoals > matchCtrl.blueGoals)
+            if (matchController.redGoals > matchController.blueGoals)
             {
-                matchCtrl.EndGame("redTeam");
+                matchController.EndGame("redTeam");
             }
 
-            else if (matchCtrl.blueGoals > matchCtrl.redGoals)
+            else if (matchController.blueGoals > matchController.redGoals)
             {
-                matchCtrl.EndGame("blueTeam");
+                matchController.EndGame("blueTeam");
             }
 
-            else if (matchCtrl.blueGoals == matchCtrl.redGoals)
+            else if (matchController.blueGoals == matchController.redGoals)
             {
-                matchCtrl.EndGame("tie");
+                matchController.EndGame("tie");
             }
         }
     }

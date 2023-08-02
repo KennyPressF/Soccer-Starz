@@ -13,7 +13,7 @@ public class MatchController : MonoBehaviour
     public int blueGoals;
 
     [SerializeField] int maxGoals;
-
+    
     [SerializeField] GameObject goalAnim;
     [SerializeField] GameObject countdownAnim;
     [SerializeField] GameObject winnerText;
@@ -22,20 +22,8 @@ public class MatchController : MonoBehaviour
     Scoreboard scoreboard;
     Timer timer;
 
-    public static MatchController instance;
-
     private void Awake()
     {
-        //if (instance == null)
-        //{
-        //    instance = this;
-        //    DontDestroyOnLoad(instance);
-        //}
-        //else
-        //{
-        //    Destroy(this.gameObject);
-        //}
-
         ballController = FindObjectOfType<BallController>();
         scoreboard = FindObjectOfType<Scoreboard>();
         timer = FindObjectOfType<Timer>();
@@ -135,6 +123,7 @@ public class MatchController : MonoBehaviour
 
     IEnumerator ProcessCountdownToPlay()
     {
+        yield return new WaitForSeconds(3f);
         countdownAnim.SetActive(true);
         yield return new WaitForSeconds(3f);
         countdownAnim.SetActive(false);
