@@ -61,6 +61,10 @@ public class MainMenu : MonoBehaviour
                 ShowOptions();
                 break;
 
+            case 2:
+                SceneManagement.instance.QuitGame();
+                break;
+
             default:
                 break;
         }
