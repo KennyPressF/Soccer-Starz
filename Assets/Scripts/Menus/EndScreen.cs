@@ -21,7 +21,7 @@ public class EndScreen : MonoBehaviour
 
         x = PlayerPrefs.GetInt("gameResult");
 
-        switch(x)
+        switch (x)
         {
             //Red Win
             case 0:
